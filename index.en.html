@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeineZielcollage - Your Personal Vision Board with Gamification & AI</title>
+  <meta name="description" content="Create your personal vision board with MeineZielcollage. Interactive goal cards, gamification (XP, levels, badges), AI suggestions and milestone tracking.">
+  <meta name="keywords" content="vision board app, goal collage, gamification goals, personal goals app, vision board english, meinezielcollage">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="MeineZielcollage">
+  <meta name="theme-color" content="#6C3483">
+  <link rel="icon" href="app-icon-light.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://meinezielcollage.vercel.app/en">
+
+  <meta property="og:title" content="MeineZielcollage - Dream. Plan. Achieve.">
+  <meta property="og:description" content="Your personal goal collage with interactive goal cards, gamification and AI support. Start for free.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="MeineZielcollage">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MeineZielcollage - Your Vision Board App">
+  <meta name="twitter:description" content="Create your vision board, track milestones, earn XP and achieve your goals - with AI support.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MeineZielcollage",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Web",
+    "description": "Personal goal collage app with interactive vision boards, gamification, AI suggestions and milestone tracking.",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Free to use"},
+    "author": {"@type": "Organization", "name": "WAMOCON GmbH"}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Is MeineZielcollage free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The free tier is permanently free: 1 board, 10 goals, basic gamification and 3 AI suggestions per month."}},
+      {"@type": "Question", "name": "What is a vision board / goal collage?", "acceptedAnswer": {"@type": "Answer", "text": "A goal collage is a visual board with interactive goal cards. Each card has images, milestones, progress bars and gamification."}},
+      {"@type": "Question", "name": "Do I need an account?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, you sign in with email or Google/Apple. Your data is stored GDPR-compliant on EU servers."}},
+      {"@type": "Question", "name": "What languages are supported?", "acceptedAnswer": {"@type": "Answer", "text": "MeineZielcollage is available in German and English."}}
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    :root {
+      --color-bg: #f5f5f7;
+      --color-bg-alt: #eeeef0;
+      --color-surface: #ffffff;
+      --color-border: rgba(0,0,0,.08);
+      --color-border-hover: rgba(0,0,0,.14);
+      --color-border-accent: rgba(108,52,131,.18);
+      --color-accent: #6C3483;
+      --color-accent-dim: #52266A;
+      --color-accent-soft: rgba(108,52,131,.06);
+      --color-text-main: #111113;
+      --color-muted: #555558;
+      --color-faint: #8e8e93;
+      --font-sans: 'Inter', system-ui, sans-serif;
+    }
+    body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text-main); }
+  </style>
+</head>
+
+<body class="overflow-x-hidden antialiased leading-relaxed">
+  <div class="gradient-orbs" aria-hidden="true">
+    <div class="orb orb--1"></div>
+    <div class="orb orb--2"></div>
+    <div class="orb orb--3"></div>
+  </div>
+
+  <div class="fixed top-0 left-0 right-0 z-[60] overflow-hidden" style="height:48px;background:#0a0a0c;border-bottom:1px solid rgba(108,52,131,.25);">
+    <div style="display:flex;align-items:center;height:100%;white-space:nowrap;animation:ticker-scroll 18s linear infinite;">
+      <span class="ticker-item">MEINEZIELCOLLAGE &mdash; Dream. Plan. Achieve. &nbsp;&nbsp;&nbsp;</span>
+      <span class="ticker-item">MEINEZIELCOLLAGE &mdash; Dream. Plan. Achieve. &nbsp;&nbsp;&nbsp;</span>
+      <span class="ticker-item">MEINEZIELCOLLAGE &mdash; Dream. Plan. Achieve. &nbsp;&nbsp;&nbsp;</span>
+      <span class="ticker-item">MEINEZIELCOLLAGE &mdash; Dream. Plan. Achieve. &nbsp;&nbsp;&nbsp;</span>
+    </div>
+  </div>
+
+  <nav class="fixed top-[48px] left-0 right-0 z-50 h-16 flex items-center transition-all duration-400" id="nav">
+    <div class="w-full max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
+      <a href="#" class="hover:opacity-70 transition-opacity flex items-center gap-2" style="text-decoration:none;">
+        <img src="app-icon-light.svg" alt="MeineZielcollage icon" style="width:28px;height:28px;">
+        <span style="font-size:1.5rem;font-weight:900;letter-spacing:-0.5px;color:#6C3483;">MeineZielcollage</span>
+      </a>
+      <div class="hidden md:flex items-center gap-4">
+        <div class="nav-links-pill">
+          <a href="#problem" class="nav-link" data-nav-section="problem">Problem</a>
+          <a href="#warum" class="nav-link" data-nav-section="warum">Solution</a>
+          <a href="#funktionen" class="nav-link" data-nav-section="funktionen">Features</a>
+          <a href="#process" class="nav-link" data-nav-section="process">Process</a>
+          <a href="#ablauf" class="nav-link" data-nav-section="ablauf">How it works</a>
+          <a href="#faq" class="nav-link" data-nav-section="faq">FAQ</a>
+        </div>
+        <a href="https://meinezielcollage.vercel.app/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;background:#6C3483;color:#fff;font-size:.8rem;font-weight:700;border-radius:999px;text-decoration:none;">Open app</a>
+        <div class="flex items-center gap-2 text-sm font-semibold" style="color:var(--color-muted);background:rgba(255,255,255,0.05);padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);">
+          <a href="index.html" class="hover:text-white transition-colors" style="text-decoration:none;">DE</a>
+          <span style="opacity:0.3">|</span>
+          <a href="index.en.html" style="color:#6C3483;text-decoration:none;">EN</a>
+        </div>
+      </div>
+      <button class="nav-hamburger md:hidden" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" aria-hidden="true">
+    <button style="position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;" onclick="closeMobileMenu()">&times;</button>
+    <div class="mm-brand">MeineZielcollage</div>
+    <div class="mm-grid">
+      <a href="#problem" class="mm-link" onclick="closeMobileMenu()">Problem</a>
+      <a href="#warum" class="mm-link" onclick="closeMobileMenu()">Solution</a>
+      <a href="#funktionen" class="mm-link" onclick="closeMobileMenu()">Features</a>
+      <a href="#process" class="mm-link" onclick="closeMobileMenu()">Process</a>
+      <a href="#ablauf" class="mm-link" onclick="closeMobileMenu()">How it works</a>
+      <a href="#faq" class="mm-link" onclick="closeMobileMenu()">FAQ</a>
+      <a href="#final-cta" class="mm-link" onclick="closeMobileMenu()">Start</a>
+    </div>
+    <div style="margin-top:2rem;display:flex;justify-content:center;gap:1.5rem;font-size:1.2rem;font-weight:700;">
+      <a href="index.html" style="color:var(--color-muted);text-decoration:none;">DE</a>
+      <span style="color:var(--color-border);">|</span>
+      <a href="index.en.html" style="color:#6C3483;text-decoration:none;">EN</a>
+    </div>
+  </div>
+
+  <section class="relative flex items-center justify-center overflow-hidden pt-[160px] pb-[130px]" id="hero">
+    <canvas id="heroParticles" class="absolute inset-0 z-[1]"></canvas>
+    <div class="absolute inset-0 z-0" style="background:radial-gradient(ellipse 70% 55% at 50% 40%,rgba(108,52,131,.09)0%,transparent 65%),radial-gradient(ellipse 50% 60% at 20% 80%,rgba(108,52,131,.05)0%,transparent 50%),radial-gradient(ellipse 45% 50% at 80% 25%,rgba(175,122,197,.07)0%,transparent 50%);"></div>
+    <div class="absolute inset-0 z-0 opacity-[.06]" style="background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 60% 55% at 50% 50%,black 0%,transparent 70%);"></div>
+
+    <div class="relative z-10 text-center max-w-[960px] px-5">
+      <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full mb-7" style="background:rgba(108,52,131,.12);border:1px solid rgba(108,52,131,.35);">
+        <img src="app-icon-light.svg" alt="MeineZielcollage" style="width:16px;height:16px;">
+        <span style="font-size:.8rem;font-weight:700;color:#8B44B0;letter-spacing:.06em;text-transform:uppercase;">AI-powered. Gamification. GDPR-compliant.</span>
+      </div>
+
+      <h1 class="reveal text-3xl md:text-7xl lg:text-8xl font-bold leading-[1.08] tracking-tight mb-6">
+        Your Goals.<br><span class="gradient-text">Your Board. Your Way.</span>
+      </h1>
+      <p class="reveal text-lg md:text-xl max-w-[680px] mx-auto leading-relaxed" style="color:var(--color-muted);">
+        MeineZielcollage turns your dreams into an interactive vision board with goal cards, milestones, gamification and AI support.
+      </p>
+
+      <div class="reveal mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="https://meinezielcollage.vercel.app/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 30px;background:#6C3483;color:#fff;font-size:.95rem;font-weight:700;border-radius:12px;text-decoration:none;transition:all .25s ease;box-shadow:0 4px 24px rgba(108,52,131,.3);">Start for free now</a>
+      </div>
+
+      <p class="reveal mt-5 text-sm" style="color:#8e8e93;">Free to start. Permanently free tier. No credit card.</p>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-[120px] z-20" style="background:linear-gradient(to bottom, transparent, #0f1117);"></div>
+  </section>
+
+  <section class="relative section-dark" id="problem" style="padding:6.5rem 0 5rem;margin-top:-2px;">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <h2 class="reveal text-4xl md:text-6xl font-black leading-[1.05] tracking-tight mb-6" style="color:#f0f0f2;">
+        Many people lose sight of their goals<br><span style="color:#6C3483;">within weeks</span>
+      </h2>
+      <p class="reveal text-lg max-w-[620px] leading-relaxed mb-16" style="color:#9a9aaa;">These three numbers show why structured goal tracking matters: the market potential, the power of gamification, and the unsolved problem of goal follow-through.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(108,52,131,.07);border:1px solid rgba(108,52,131,.25);">
+          <span class="block stat-value font-black leading-none mb-3 tabular-nums" style="color:#6C3483;" data-target="30" data-suffix=" Mio.">0</span>
+          <span class="block text-lg font-semibold mb-1" style="color:#f0f0f2;">People in DACH region</span>
+          <span class="block text-xs" style="color:#7a7a88;">interested in personal development digitally (Statista 2026)</span>
+        </div>
+        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(108,52,131,.07);border:1px solid rgba(108,52,131,.25);">
+          <span class="block stat-value font-black leading-none mb-3 tabular-nums" style="color:#6C3483;" data-target="73" data-suffix="%">0</span>
+          <span class="block text-lg font-semibold mb-1" style="color:#f0f0f2;">fail at annual goals</span>
+          <span class="block text-xs" style="color:#7a7a88;">cannot recall their resolutions after a few weeks (Forbes Health 2025)</span>
+        </div>
+        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(108,52,131,.07);border:1px solid rgba(108,52,131,.25);">
+          <span class="block stat-value font-black leading-none mb-3 tabular-nums" style="color:#6C3483;" data-target="3" data-suffix="×">0</span>
+          <span class="block text-lg font-semibold mb-1" style="color:#f0f0f2;">higher retention</span>
+          <span class="block text-xs" style="color:#7a7a88;">with gamification in consumer apps (Gartner 2025)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 md:py-32 section-dark" id="warum" style="background:#050508;">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-14">
+        <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Why MeineZielcollage</h2>
+        <p class="reveal text-lg max-w-[650px] mx-auto leading-relaxed" style="color:#9999a1;">Five clear advantages for people who want to pursue personal goals visually, playfully and with structure.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="reveal p-7 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);">
+          <h3 class="text-xl font-bold mb-3" style="color:#f0f0f2;">Visual & Inspiring</h3>
+          <p style="color:#9a9aaa;">Your board looks like a work of art, not a spreadsheet. Beautiful goal cards with images, colors and mood.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);">
+          <h3 class="text-xl font-bold mb-3" style="color:#f0f0f2;">Gamification that motivates</h3>
+          <p style="color:#9a9aaa;">Earn XP, level up, unlock badges, maintain streaks. Goal tracking becomes a game – in the best possible way.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);">
+          <h3 class="text-xl font-bold mb-3" style="color:#f0f0f2;">AI as personal coach</h3>
+          <p style="color:#9a9aaa;">Not sure what your goals should be? AI suggests 5 fitting goals, formulates them as SMART goals and generates milestones.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);">
+          <h3 class="text-xl font-bold mb-3" style="color:#f0f0f2;">Reminders that work</h3>
+          <p style="color:#9a9aaa;">Regular reflection prompts, weekly reviews and deadline reminders keep you on track long-term – without being annoying.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="funktionen" class="py-24 section-alt">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-14">
+        <h2 class="reveal text-3xl md:text-5xl font-bold tracking-tight mb-4">Core features that move you forward</h2>
+        <p class="reveal text-lg max-w-[680px] mx-auto" style="color:var(--color-muted);">All key features for a vibrant, interactive vision board in one thoughtfully designed web app.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <article class="reveal p-7 rounded-2xl bg-white border card-hover accent-hover">
+          <h3 class="text-xl font-bold mb-3">Interactive Goal Cards</h3>
+          <p style="color:var(--color-muted);">Each card has a title, image, category, milestones, progress bar, deadline and status (Dream → Achieved!).</p>
+        </article>
+        <article class="reveal p-7 rounded-2xl bg-white border card-hover accent-hover">
+          <h3 class="text-xl font-bold mb-3">Full Gamification</h3>
+          <p style="color:var(--color-muted);">XP system, Level 1–50, badges/achievements, daily streaks and progress dashboard. Your life journey as an adventure.</p>
+        </article>
+        <article class="reveal p-7 rounded-2xl bg-white border card-hover accent-hover">
+          <h3 class="text-xl font-bold mb-3">AI Suggestion Generator</h3>
+          <p style="color:var(--color-muted);">Goal suggestions by category, SMART reformulation of vague goals, milestone suggestions and daily motivational quotes.</p>
+        </article>
+        <article class="reveal p-7 rounded-2xl bg-white border card-hover accent-hover">
+          <h3 class="text-xl font-bold mb-3">Share & Export</h3>
+          <p style="color:var(--color-muted);">Share board as image for Instagram/WhatsApp, create read-only link, share achievement cards, print as PDF.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 section-dark" id="process" style="background:#090a0e;">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-10">
+        <h2 class="reveal text-3xl md:text-5xl font-bold tracking-tight mb-4" style="color:#f0f0f2;">Main Process as Planning Flow</h2>
+        <p class="reveal text-lg max-w-[760px] mx-auto" style="color:#a2a2ab;">MeineZielcollage's goal: turn a vague dream into a clear, trackable life plan. The flow shows the path from idea to achieved goal.</p>
+      </div>
+      <div class="reveal process-shell" id="processFlow">
+        <div class="process-track">
+          <div class="process-track__bar" id="processFlowBar"></div>
+          <div class="process-track__dot" id="processFlowDot"></div>
+        </div>
+        <div class="process-grid">
+          <article class="process-step process-step--active" tabindex="0">
+            <div class="process-step__index">01</div>
+            <h3 class="process-step__title">Create your board</h3>
+            <p class="process-step__text">Set up a new board, choose a timeframe and pick a template. Ready in 2 minutes.</p>
+            <p class="process-step__hint">Click to expand</p>
+            <div class="process-step__more">Choose a theme, give your board a title (e.g. "My 2027") and set the timeframe. Templates help you get started quickly.</div>
+          </article>
+          <article class="process-step" tabindex="0">
+            <div class="process-step__index">02</div>
+            <h3 class="process-step__title">Goals as cards</h3>
+            <p class="process-step__text">Add goals manually or let AI inspire you. Define milestones for each goal.</p>
+            <p class="process-step__hint">Click to expand</p>
+            <div class="process-step__more">AI suggests 5 goals based on your chosen category. Pick an image from the Unsplash library or upload your own.</div>
+          </article>
+          <article class="process-step" tabindex="0">
+            <div class="process-step__index">03</div>
+            <h3 class="process-step__title">Track progress</h3>
+            <p class="process-step__text">Check off milestones, earn XP, update status. See instantly where you stand.</p>
+            <p class="process-step__hint">Click to expand</p>
+            <div class="process-step__more">Each checked milestone awards XP, triggers badges and updates the progress bar. Confetti animation makes every step a celebration.</div>
+          </article>
+          <article class="process-step" tabindex="0">
+            <div class="process-step__index">04</div>
+            <h3 class="process-step__title">Celebrate & Share</h3>
+            <p class="process-step__text">Goal achieved! Share your success as an achievement card or export your board as an image.</p>
+            <p class="process-step__hint">Click to expand</p>
+            <div class="process-step__more">The "I did it!" moment makes your success real. Share it on Instagram, WhatsApp or via link – or order your board as a print.</div>
+          </article>
+        </div>
+        <p class="process-target"><strong>Goal:</strong> More clarity, less distraction and a living board that reminds you of your goals every day.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 section-dark" style="background:#0f1117;" id="ablauf">
+    <div class="max-w-[1000px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-12">
+        <h2 class="reveal text-3xl md:text-5xl font-bold tracking-tight mb-4" style="color:#f0f0f2;">How it works in 3 steps</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="reveal p-7 rounded-2xl" style="background:rgba(108,52,131,.08);border:1px solid rgba(108,52,131,.25);">
+          <span class="text-sm font-bold uppercase tracking-wider" style="color:#8B44B0;">Step 1</span>
+          <h3 class="text-xl font-bold mt-2 mb-2" style="color:#f0f0f2;">Create your board</h3>
+          <p style="color:#9a9aaa;">Choose a template or start from scratch. Give your year a framework and theme.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl" style="background:rgba(108,52,131,.08);border:1px solid rgba(108,52,131,.25);">
+          <span class="text-sm font-bold uppercase tracking-wider" style="color:#8B44B0;">Step 2</span>
+          <h3 class="text-xl font-bold mt-2 mb-2" style="color:#f0f0f2;">Visualize your goals</h3>
+          <p style="color:#9a9aaa;">Add goal cards with images, milestones and deadlines – manually or with AI support.</p>
+        </div>
+        <div class="reveal p-7 rounded-2xl" style="background:rgba(108,52,131,.08);border:1px solid rgba(108,52,131,.25);">
+          <span class="text-sm font-bold uppercase tracking-wider" style="color:#8B44B0;">Step 3</span>
+          <h3 class="text-xl font-bold mt-2 mb-2" style="color:#f0f0f2;">Stay on track & celebrate</h3>
+          <p style="color:#9a9aaa;">Track progress, earn XP, check off milestones and share your successes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24" id="faq">
+    <div class="max-w-[900px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-10">
+        <h2 class="reveal text-3xl md:text-5xl font-bold tracking-tight mb-4">Frequently asked questions</h2>
+      </div>
+      <div id="faqList" class="rounded-2xl bg-white border overflow-hidden">
+        <div class="faq-item">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between">
+            <span class="font-semibold">Is MeineZielcollage free?</span>
+            <span class="faq-question__icon relative w-5 h-5"></span>
+          </button>
+          <div class="faq-answer px-6 pb-5" style="color:var(--color-muted);">Yes. The free tier is permanently free: 1 board, 10 goals, basic gamification and 3 AI suggestions per month. Premium costs €4.99/month.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between">
+            <span class="font-semibold">What is a vision board / goal collage?</span>
+            <span class="faq-question__icon relative w-5 h-5"></span>
+          </button>
+          <div class="faq-answer px-6 pb-5" style="color:var(--color-muted);">A goal collage is a visual board with interactive goal cards. Each card has images, milestones, progress bars and gamification – not a static poster, but a living goal system.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between">
+            <span class="font-semibold">Do I need an account?</span>
+            <span class="faq-question__icon relative w-5 h-5"></span>
+          </button>
+          <div class="faq-answer px-6 pb-5" style="color:var(--color-muted);">Yes, you sign in with email or Google/Apple. Your data is stored GDPR-compliant on EU servers (Supabase Frankfurt) and can be exported or deleted at any time.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question w-full text-left px-6 py-5 flex items-center justify-between">
+            <span class="font-semibold">What languages are supported?</span>
+            <span class="faq-question__icon relative w-5 h-5"></span>
+          </button>
+          <div class="faq-answer px-6 pb-5" style="color:var(--color-muted);">MeineZielcollage is available in German and English.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 section-dark" id="final-cta" style="background:#050508;">
+    <div class="max-w-[900px] mx-auto px-5 md:px-10 text-center">
+      <h2 class="reveal text-3xl md:text-5xl font-black leading-[1.1] mb-5" style="color:#f0f0f2;">Start now with a clear board instead of vague wishes.</h2>
+      <p class="reveal text-lg max-w-[620px] mx-auto mb-9" style="color:#9a9aaa;">Free, ready to use and focused on what matters.</p>
+      <div class="reveal flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="https://meinezielcollage.vercel.app/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;padding:14px 30px;background:#6C3483;color:#fff;font-weight:700;border-radius:12px;text-decoration:none;">Create your Vision Board now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#050508;color:#8e8e93;padding:32px 20px 40px;text-align:center;border-top:1px solid rgba(255,255,255,.08);">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <img src="app-icon-light.svg" alt="MeineZielcollage" style="width:18px;height:18px;opacity:.85;">
+      <span style="font-weight:700;color:#f0f0f2;">MeineZielcollage</span>
+    </div>
+    <p style="font-size:.9rem;">Your personal goal collage with gamification & AI.</p>
+    <div style="margin-top:12px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:.85rem;">
+      <a href="https://meinezielcollage.vercel.app/" target="_blank" rel="noopener noreferrer" style="color:#AF7AC5;text-decoration:none;">Open App</a>
+      <a href="impressum.html" style="color:#AF7AC5;text-decoration:none;">Imprint</a>
+      <a href="agb.html" style="color:#AF7AC5;text-decoration:none;">Terms</a>
+      <a href="datenschutz.html" style="color:#AF7AC5;text-decoration:none;">Privacy</a>
+    </div>
+  </footer>
+
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
+    <div class="cookie-banner__inner">
+      <h3 style="font-weight:700;font-size:1.05rem;margin-bottom:.45rem;">Cookie & Privacy Notice</h3>
+      <p style="font-size:.92rem;line-height:1.6;color:#4d4d55;">MeineZielcollage stores your boards and goals securely on EU servers (GDPR-compliant). We only use technically necessary cookies.</p>
+      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:1rem;flex-wrap:wrap;">
+        <button class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-action="reject">Close</button>
+        <button class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-action="accept">Understood</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
